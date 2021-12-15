@@ -5,7 +5,6 @@ import HeaderComponent from "./Components/HeaderComponent";
 import FooterComponent from "./Components/FooterComponent";
 import PhoneListComponent from "./Components/PhoneListComponent";
 import AddPhone from "./Components/AddPhone";
-import FindPhone from "./Components/FindPhone";
 
 function App() {
   return (
@@ -13,7 +12,7 @@ function App() {
       <Router>
         <div className="container">
           <HeaderComponent />
-          <div className="container">
+          <div style={{ marginTop: "55px" }} className="container">
             <Switch>
               <Route path="/" exact component={PhoneListComponent}></Route>
               <Route
@@ -21,7 +20,6 @@ function App() {
                 component={PhoneListComponent}
               ></Route>
               <Route path="/agregar" component={AddPhone}></Route>
-              <Route path="/find-phone" component={FindPhone}></Route>
             </Switch>
           </div>
           <FooterComponent />

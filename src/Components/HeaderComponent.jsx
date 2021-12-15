@@ -7,28 +7,24 @@ class HeaderComponent extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{ overflow: "hidden", position: "absolute", width: "100%", top: "0" }}>
                 <header>
 
-                    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                        <div className='container'>
-                            <a href='http://localhost:3000/listatelefono' className='navbar-brand'>
+                    <nav className="navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark" >
+                        <div id='nas' className='container text-center'>
+                            <a href='http://192.168.100.11:3000/listatelefono' className='navbar-brand'>
                                 Directorio
                             </a>
                         </div>
                         <div className='container'>
-                            <a href='http://localhost:3000/agregar' className='navbar-brand'>
+                            <a href='http://192.168.100.11:3000/agregar' className='navbar-brand'>
                                 Agregar
                             </a>
                         </div>
-                        <div className='container'>
-                            <a href='http://localhost:3000/find-phones' className='navbar-brand'>
-                                Buscar
-                            </a>
-                        </div>
+
                     </nav>
                 </header>
-            </div>
+            </div >
         );
     }
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-export default class FindPhone extends Component {
-
+export default class EditComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -9,7 +8,7 @@ export default class FindPhone extends Component {
     render() {
         return (
             <div>
-                find phone
+                
             </div>
         )
     }
