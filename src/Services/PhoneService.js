@@ -12,14 +12,20 @@ class PhoneService {
   }
 
   findById(id) {
-    let newSearch = TEL_URL + "/" + id;
-    return axios.get(newSearch, id);
+    let newSearch = TEL_URL + "find-phone/" + id;
+    return axios.get(newSearch);
   }
   findByFilter(str) {
     let newStr =
       "http://192.168.100.11:8080/listatelefono/find-phones/filter?filter=" +
       str;
     return axios.get(newStr);
+  }
+  deleteContact(id) {
+    return axios.delete(TEL_URL + "remove-phone/" + id);
+  }
+  updateContact(id, contact) {
+    return axios.put(TEL_URL + "edit-phone/" + id, contact);
   }
 }
 

@@ -26,6 +26,7 @@ export default class AddPhone extends Component {
         this.setState({ email: e.target.value })
     }
     addNewContact = (event) => {
+        event.preventDefault();
         if (this.state.name === '' || this.state.phone === '') {
             alert("Nombre y telefono deben tener un valor")
             return
@@ -37,13 +38,11 @@ export default class AddPhone extends Component {
             email: this.state.email
         }
 
-        PhoneService.createPhone(contact).then(res => {
-            this.props.history.push("/");
-        })
-        //alert(JSON.stringify(employee)) 
+        PhoneService.createPhone(contact).then(res => { this.props.history.push("/listatelefono"); });
+
     }
-    mainPage() {
-        this.props.history.push('/')
+    mainPage = (e) => {
+        this.props.history.push('/listatelefono')
     }
     render() {
         return (
@@ -57,13 +56,13 @@ export default class AddPhone extends Component {
                                     <div className="form-group">
                                         <label style={{ marginBottom: "5px" }}>Nombre completo: </label>
                                         <input placeholder="Nombre completo" name="name" className="form-control"
-                                            value={this.state.firstName} onChange={this.changeNameHandler} />
+                                            value={this.state.name} onChange={this.changeNameHandler} />
                                     </div>
 
                                     <div className="form-group">
                                         <label style={{ marginBottom: "5px" }}>Telefono: </label>
                                         <input placeholder="Telefono" name="phone" className="form-control"
-                                            value={this.state.lastName} onChange={this.changePhoneHandler} />
+                                            value={this.state.phone} onChange={this.changePhoneHandler} />
                                     </div>
                                     <div className="form-group">
                                         <label style={{ marginBottom: "5px" }}>Notas: </label>
@@ -76,10 +75,9 @@ export default class AddPhone extends Component {
                                             value={this.state.email} onChange={this.changeEmailHandler} />
                                     </div>
 
-                                    <button style={{ margin: "5px" }} type="submit" onClick={this.addNewContact} className="btn btn-primary">Agregar Contact</button>
+                                    <button type="submit" style={{ margin: "5px" }} onClick={this.addNewContact} className="btn btn-primary">Agregar Contact</button>
 
-                                    <button style={{ margin: "5px" }} type="cancel" onClick={this.mainPage} className="btn btn-secondary">Cancelar</button>
-
+                                    <button type="button" style={{ margin: "5px" }} onClick={this.mainPage} className="btn btn-secondary">Cancelar</button>
                                 </form>
                             </div>
                         </div>

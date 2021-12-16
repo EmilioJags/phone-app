@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PhoneService from '../Services/PhoneService'
-import DeletePhoneComponent from './DeletePhoneComponent';
-import EditPhoneComponent from './EditPhoneComponent';
 
 export default class PhoneListComponent extends Component {
 
@@ -9,13 +7,25 @@ export default class PhoneListComponent extends Component {
         super(props);
         this.state = { phones: [] }
         this.filterResults = this.filterResults.bind(this);
+        this.delete = this.delete.bind(this);
+        this.editContact = this.editContact.bind(this);
     }
+    editContact(id) {
+        this.props.history.push(`/edit-phone/${id}`)
+    }
+    delete(id) {
+        PhoneService.deleteContact(id).then(res => {
+            this.setState({ phones: this.state.phones.filter(amigo => amigo.id !== id) })
+        });
+
+    }
+
     componentDidMount() {
         PhoneService.getPhones().then((res) => {
             this.setState({ phones: res.data })
+
         })
     }
-
 
     filterResults = (e) => {
         PhoneService.findByFilter(e.target.value).then((res) => {
@@ -25,12 +35,12 @@ export default class PhoneListComponent extends Component {
 
     render() {
         return (
-            <div>
-                <h2 className="text-center">Directorio Telefonico Familia Castro</h2>
+            <div style={{ marginTop: "65px" }}>
+                <h2 className="text-center">Directorio Telefonico Familia Castro ({this.state.phones.length} contactos)</h2>
                 <div className="input-group mb-3" >
-                    <input onChange={this.filterResults} type="text" className="form-control" 
-                    placeholder="Introduce un termino de busqueda" aria-label="Recipient's username" 
-                    aria-describedby="button-addon2" />
+                    <input onChange={this.filterResults} type="text" className="form-control"
+                        placeholder="Introduce un termino de busqueda" aria-label="Recipient's username"
+                        aria-describedby="button-addon2" />
 
                 </div>
                 <div className="row">
@@ -50,9 +60,15 @@ export default class PhoneListComponent extends Component {
                                         <td>{amigo.name}</td>
                                         <td>{amigo.phone}</td>
                                         <td>{amigo.note}</td>
-                                        <td className='me-2'>
-                                            <EditPhoneComponent props={amigo.id} />
-                                            <DeletePhoneComponent props={amigo.id} /></td>
+                                        <td style={{ display: "flex" }}>
+                                            <button style={{ margin: "10px", justifyItems: "center" }}
+                                                className='btn btn-info'
+                                                onClick={() => this.editContact(amigo.id)}
+                                            >Modificar</button>
+                                            <button style={{ margin: "10px", justifyItems: "center" }}
+                                                className='btn btn-danger'
+                                                onClick={() => this.delete(amigo.id)}>Borrar</button>
+                                        </td>
                                     </tr>
                                 )
                             }
