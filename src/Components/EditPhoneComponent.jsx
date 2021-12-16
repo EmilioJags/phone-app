@@ -28,7 +28,8 @@ export default class EditPhoneComponent extends Component {
         }
         console.log(this.state.phoneObj)
         alert(this.state.phoneObj)
-        PhoneService.updateContact(this.state.id, this.state.phoneObj).then(res => {
+        let newContact = { name: this.state.name, email: this.state.email, note: this.state.note, phone: this.state.phone }
+        PhoneService.updateContact(this.state.id, newContact).then(res => {
             this.props.history.push("/")
         })
     }
