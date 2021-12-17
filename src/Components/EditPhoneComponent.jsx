@@ -9,8 +9,7 @@ export default class EditPhoneComponent extends Component {
             name: '',
             phone: '',
             email: '',
-            note: '',
-            phoneObj: []
+            note: ''
         }
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changeNoteHandler = this.changeNoteHandler.bind(this);
@@ -26,8 +25,6 @@ export default class EditPhoneComponent extends Component {
             alert("Nombre y telefono deben tener un valor")
             return
         }
-        console.log(this.state.phoneObj)
-        alert(this.state.phoneObj)
         let newContact = { name: this.state.name, email: this.state.email, note: this.state.note, phone: this.state.phone }
         PhoneService.updateContact(this.state.id, newContact).then(res => {
             this.props.history.push("/")
@@ -37,7 +34,6 @@ export default class EditPhoneComponent extends Component {
     componentDidMount() {
         PhoneService.findById(this.state.id).then((res) => {
             let phone = res.data
-            this.setState({ phoneObj: res.data })
             this.setState({ name: phone.name, email: phone.email, note: phone.note, phone: phone.phone })
         })
     }
@@ -53,7 +49,8 @@ export default class EditPhoneComponent extends Component {
     changeEmailHandler = (e) => {
         this.setState({ email: e.target.value })
     }
-    cancel() {
+    cancel = (e) => {
+        e.preventDefault();
         this.props.history.push("/");
     }
 
