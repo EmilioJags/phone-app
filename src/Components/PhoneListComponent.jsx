@@ -58,7 +58,7 @@ export default class PhoneListComponent extends Component {
                                 this.state.phones.map(amigo =>
                                     <tr key={amigo.id}>
                                         <td>{amigo.name}</td>
-                                        <td>{amigo.phone}</td>
+                                        <td><a href={"tel:" + amigo.phone}>{amigo.phone}</a></td>
                                         <td>{amigo.note}</td>
                                         <td style={{ display: "flex" }}>
                                             <button style={{ margin: "10px", justifyItems: "center" }}
