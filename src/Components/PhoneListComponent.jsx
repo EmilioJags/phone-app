@@ -28,9 +28,16 @@ export default class PhoneListComponent extends Component {
     }
 
     filterResults = (e) => {
-        PhoneService.findByFilter(e.target.value).then((res) => {
-            this.setState({ phones: res.data })
-        })
+        if (e.target.value == "") {
+            PhoneService.getPhones().then((res) => {
+                this.setState({ phones: res.data })
+            })
+        }
+        else {
+            PhoneService.findByFilter(e.target.value).then((res) => {
+                this.setState({ phones: res.data })
+            })
+        }
     }
 
     render() {

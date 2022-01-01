@@ -1,6 +1,6 @@
 import axios from "axios";
-
-let TEL_URL = "http://192.168.100.11:8080/listatelefono/";
+let URL = "https://ricardo-mycvapp.herokuapp.com/";
+let TEL_URL = URL + "listatelefono/";
 
 class PhoneService {
   getPhones() {
@@ -16,9 +16,7 @@ class PhoneService {
     return axios.get(newSearch);
   }
   findByFilter(str) {
-    let newStr =
-      "http://192.168.100.11:8080/listatelefono/find-phones/filter?filter=" +
-      str;
+    let newStr = URL + "listatelefono/find-phones/filter?filter=" + str;
     return axios.get(newStr);
   }
   deleteContact(id) {
