@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  basename,
+} from "react-router-dom";
 import "./App.css";
 import HeaderComponent from "./Components/HeaderComponent";
 import FooterComponent from "./Components/FooterComponent";
@@ -10,12 +15,11 @@ import EditPhoneComponent from "./Components/EditPhoneComponent";
 function App() {
   return (
     <>
-      <Router>
+      <Router basename="/listatelefono">
         <div className="container">
           <HeaderComponent />
           <div style={{ marginTop: "55px" }} className="container">
             <Switch>
-              <Route path="/" exact component={PhoneListComponent}></Route>
               <Route
                 path="/listatelefono"
                 component={PhoneListComponent}
