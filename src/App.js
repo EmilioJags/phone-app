@@ -10,7 +10,7 @@ import EditPhoneComponent from "./Components/EditPhoneComponent";
 function App() {
   return (
     <>
-      <Router basename="/">
+      <Router basename={process.env.PUBLIC_URL}>
         <div className="container">
           <HeaderComponent />
           <div style={{ marginTop: "55px" }} className="container">
