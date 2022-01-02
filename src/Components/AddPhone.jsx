@@ -42,7 +42,7 @@ export default class AddPhone extends Component {
 
     }
     mainPage = (e) => {
-        this.props.history.push('/listatelefono')
+        this.props.history.push('/')
     }
     render() {
         return (
@@ -52,7 +52,7 @@ export default class AddPhone extends Component {
                         <div className="card col-md-6 offset-md-3 offset-md-3" style={{ marginTop: "10px", marginBottom: "10px" }}>
                             <h3 className="text-center">Agregar Nuevo Contacto</h3>
                             <div className="card-body">
-                                <form id="newEmpFormId">
+                                <form id="newEmpFormId" onSubmit={this.addNewContact}>
                                     <div className="form-group">
                                         <label style={{ marginBottom: "5px" }}>Nombre completo: </label>
                                         <input placeholder="Nombre completo" name="name" className="form-control"

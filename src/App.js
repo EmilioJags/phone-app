@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  basename,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HeaderComponent from "./Components/HeaderComponent";
 import FooterComponent from "./Components/FooterComponent";
@@ -15,16 +10,12 @@ import EditPhoneComponent from "./Components/EditPhoneComponent";
 function App() {
   return (
     <>
-      <Router basename="/">
+      <Router basename="/listatelefono">
         <div className="container">
           <HeaderComponent />
           <div style={{ marginTop: "55px" }} className="container">
             <Switch>
-              <Route path="/" component={PhoneListComponent}></Route>
-              <Route
-                path="/listatelefono"
-                component={PhoneListComponent}
-              ></Route>
+              <Route exact path="/" component={PhoneListComponent}></Route>
               <Route path="/agregar" component={AddPhone}></Route>
               <Route
                 path="/edit-phone/:id"
