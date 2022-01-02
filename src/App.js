@@ -6,7 +6,6 @@ import FooterComponent from "./Components/FooterComponent";
 import PhoneListComponent from "./Components/PhoneListComponent";
 import AddPhone from "./Components/AddPhone";
 import EditPhoneComponent from "./Components/EditPhoneComponent";
-import { homepage } from "package.json";
 
 function App() {
   return (
