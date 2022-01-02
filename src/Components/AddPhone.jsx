@@ -38,7 +38,7 @@ export default class AddPhone extends Component {
             email: this.state.email
         }
 
-        PhoneService.createPhone(contact).then(res => { this.props.history.push("/listatelefono"); });
+        PhoneService.createPhone(contact).then(res => { this.props.history.push("/"); });
 
     }
     mainPage = (e) => {
@@ -75,7 +75,7 @@ export default class AddPhone extends Component {
                                             value={this.state.email} onChange={this.changeEmailHandler} />
                                     </div>
 
-                                    <button type="submit" style={{ margin: "5px" }} onClick={this.addNewContact} className="btn btn-primary">Agregar Contact</button>
+                                    <button type="submit" style={{ margin: "5px" }} onClick={this.addNewContact} className="btn btn-primary">Agregar Contacto</button>
 
                                     <button type="button" style={{ margin: "5px" }} onClick={this.mainPage} className="btn btn-secondary">Cancelar</button>
                                 </form>

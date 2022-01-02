@@ -62,7 +62,7 @@ export default class EditPhoneComponent extends Component {
                         <div className="card col-md-6 offset-md-3 offset-md-3" style={{ marginTop: "10px", marginBottom: "10px" }}>
                             <h3 className="text-center">Modificar contacto</h3>
                             <div className="card-body">
-                                <form id="newEmpFormId">
+                                <form id="newEmpFormId" onSubmit={this.updateContact}>
                                     <div className="form-group">
                                         <label style={{ marginBottom: "5px" }}>Nombre completo: </label>
                                         <input placeholder="Nombre completo" name="name" className="form-control"
