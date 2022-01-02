@@ -4,6 +4,17 @@ class HeaderComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {}
+        this.homePage = this.homePage.bind();
+        this.addContact = this.addContact.bind();
+    }
+
+    addContact = (e) => {
+        e.preventDefault();
+        this.props.history.push("/agregar");
+    }
+    homePage = (e) => {
+        e.preventDefault();
+        this.props.history.push("/");
     }
     render() {
         return (
@@ -16,12 +27,11 @@ class HeaderComponent extends Component {
 
                     <nav className="style-scope ytd-masthead navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark" >
                         <div id='nas' className='container text-center'>
-                            <a href='http://192.168.100.11:3000/listatelefono' className='navbar-brand'>
-                                Directorio
-                            </a>
+                            <a href="/" className='navbar-brand'>
+                                Directorio</a>
                         </div>
                         <div className='container'>
-                            <a href='http://192.168.100.11:3000/agregar' className='navbar-brand'>
+                            <a href="/agregar" className='navbar-brand'>
                                 Agregar
                             </a>
                         </div>
