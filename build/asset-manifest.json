@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/phone-app/static/css/main.eea6265f.css",
+    "main.js": "/phone-app/static/js/main.49dfe9e2.js",
+    "static/js/787.bcf69f66.chunk.js": "/phone-app/static/js/787.bcf69f66.chunk.js",
+    "index.html": "/phone-app/index.html",
+    "main.eea6265f.css.map": "/phone-app/static/css/main.eea6265f.css.map",
+    "main.49dfe9e2.js.map": "/phone-app/static/js/main.49dfe9e2.js.map",
+    "787.bcf69f66.chunk.js.map": "/phone-app/static/js/787.bcf69f66.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eea6265f.css",
+    "static/js/main.49dfe9e2.js"
+  ]
+}
