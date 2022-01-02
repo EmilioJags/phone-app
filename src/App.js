@@ -16,12 +16,17 @@ function App() {
           <div style={{ marginTop: "55px" }} className="container">
             <Switch>
               <Route exact path="/" component={PhoneListComponent}></Route>
-              <Route path="/agregar" component={AddPhone}></Route>
+              <Route exact path="/agregar" component={AddPhone}></Route>
               <Route
+                exact
                 path="/edit-phone/:id"
                 component={EditPhoneComponent}
               ></Route>
-              <Route path="/remove-phone/:id" component={AddPhone}></Route>
+              <Route
+                exact
+                path="/remove-phone/:id"
+                component={AddPhone}
+              ></Route>
             </Switch>
           </div>
           <FooterComponent />
