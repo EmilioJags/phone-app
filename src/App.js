@@ -10,7 +10,7 @@ import EditPhoneComponent from "./Components/EditPhoneComponent";
 function App() {
   return (
     <>
-      <Router basename="/listatelefono">
+      <Router basename="/">
         <div className="container">
           <HeaderComponent />
           <div style={{ marginTop: "55px" }} className="container">
