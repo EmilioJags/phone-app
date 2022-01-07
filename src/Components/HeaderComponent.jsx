@@ -29,11 +29,23 @@ class HeaderComponent extends Component {
                     <nav className="style-scope ytd-masthead navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark" >
                         <div id='nas' className='container text-center'>
                             <Link to="/" className='navbar-brand'>
-                                Directorio</Link>
+                                Phone Directory App</Link>
                         </div>
                         <div className='container'>
-                            <Link to="/agregar" className='navbar-brand'>
-                                Agregar
+                            <Link to="/weather-app" className='navbar-brand'>
+                                Weather App
+                            </Link>
+                        </div>
+
+                        <div className='container'>
+                            <Link to="/task-manager" className='navbar-brand'>
+                                Task Manager App
+                            </Link>
+                        </div>
+
+                        <div className='container'>
+                            <Link to="/game-app" className='navbar-brand'>
+                                Game App
                             </Link>
                         </div>
 
