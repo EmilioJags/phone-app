@@ -50,7 +50,7 @@ class HeaderComponent extends Component {
                         </div>
                         <div className='container'>
                             <Link to="/countdown-app" className='navbar-brand'>
-                                Countdown App
+                                Countdown App [wip]
                             </Link>
                         </div>
 
