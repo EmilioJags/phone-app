@@ -9,6 +9,7 @@ import EditPhoneComponent from "./Components/EditPhoneComponent";
 import TaskManagerComponent from "./Components/TaskManagerComponent";
 import WeatherComponent from "./Components/WeatherComponent";
 import GameComponent from "./Components/GameComponent";
+import CountDownApp from "./Components/CountdownComponents/CountDownApp";
 
 function App() {
   return (
@@ -35,6 +36,11 @@ function App() {
                 exact
                 path="/edit-phone/:id"
                 component={EditPhoneComponent}
+              ></Route>
+              <Route
+                exact
+                path="/countdown-app"
+                component={CountDownApp}
               ></Route>
               <Route
                 exact

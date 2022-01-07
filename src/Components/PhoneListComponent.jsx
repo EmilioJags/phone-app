@@ -47,7 +47,7 @@ export default class PhoneListComponent extends Component {
     render() {
         return (
             <div style={{ marginTop: "25px", alignContent: "left" }}>
-                <h2 className="text-center">Directorio Telefonico Familia Castro ({this.state.phones.length} contactos)</h2>
+                <h2 className="text-center">Directorio Telefonico ({this.state.phones.length} contactos)</h2>
                 <div className="input-group mb-3" >
                     <input onChange={this.filterResults} type="text" className="form-control"
                         placeholder="Introduce un termino de busqueda" aria-label="Recipient's username"

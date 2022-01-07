@@ -33,19 +33,24 @@ class HeaderComponent extends Component {
                         </div>
                         <div className='container'>
                             <Link to="/weather-app" className='navbar-brand'>
-                                Weather App
+                                Weather App [wip]
                             </Link>
                         </div>
 
                         <div className='container'>
                             <Link to="/task-manager" className='navbar-brand'>
-                                Task Manager App
+                                Task Manager App [wip]
                             </Link>
                         </div>
 
                         <div className='container'>
                             <Link to="/game-app" className='navbar-brand'>
-                                Game App
+                                Game App [wip]
+                            </Link>
+                        </div>
+                        <div className='container'>
+                            <Link to="/countdown-app" className='navbar-brand'>
+                                Countdown App
                             </Link>
                         </div>
 
