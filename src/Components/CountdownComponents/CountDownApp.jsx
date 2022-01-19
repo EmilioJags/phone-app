@@ -78,7 +78,7 @@ class CountDownApp extends Component {
     componentDidMount() {
         setInterval(() => {
             this.countdown();
-        }, 1500);
+        }, 1000);
     }
 
     render() {
