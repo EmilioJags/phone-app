@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import logo from '../../Resources/under_construction.png'
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend
+} from "recharts";
 
 
 export default class DataAnalysis extends Component {
@@ -6,25 +16,42 @@ export default class DataAnalysis extends Component {
         super(props);
         this.state = {
             plotData: {
-                title: "",
+                title: "asd",
                 data: [],
                 xAxis: "",
                 yAxis: ""
-            }
+            },
+            data: []
         }
         this.updatePlot = this.updatePlot.bind(this);
         this.validDigits = this.validDigits.bind(this);
+        this.getXValue = this.getXValue.bind(this);
+    }
+
+    getXValue = data => {
+        return data.value;
     }
 
     validDigits(data) {
-        return data.replace(/[^\d,]+/g, '');
+        return data.replace(/[^\d,.]+/g, '');
     }
 
     updatePlot = (e) => {
-        const data = this.validDigits(e.target.value).split(",");
-        this.setState({ data: data });
+        document.getElementById('data-to-plot').innerHTML = e.target.value.replace(/[^\d,.]+/g, '');
+        var dt = this.validDigits(e.target.value).split(',').map(Number);
+        dt = Array.from(dt, item => item === '' ? 0 : item);
+        //console.log(dt);
+        let dt2 = dt.map(item => {
+            return item
+        })
 
-        if (e.target.value !== '') {
+        //console.log(dt2);
+        const data = []
+        var reg = /^[a-z]+$/i;
+        if (reg.test(e.target.value)) {
+            document.getElementById('arima-btn').disabled = true;
+            document.getElementById('arma-btn').disabled = true;
+        } else if (e.target.value !== '' && !reg.test(e.target.value)) {
             document.getElementById('arima-btn').disabled = false;
             document.getElementById('arma-btn').disabled = false;
         }
@@ -32,8 +59,25 @@ export default class DataAnalysis extends Component {
             document.getElementById('arima-btn').disabled = true;
             document.getElementById('arma-btn').disabled = true;
         }
-        console.log(this.props.state[data]);
+        if (e.target.value == '')
+            document.getElementById('data-to-plot').innerHTML = '-'
+        else
+            document.getElementById('data-to-plot').innerHTML = "[" + dt + "]";
+
+        let dt_plot = []
+
+        for (let i = 0; i < dt.length; i++) {
+            //console.log(i);
+            let new_d = {
+                value: dt[i]
+            }
+            dt_plot.push(new_d)
+        }
+
+        this.setState({ data: dt_plot })
+        console.log("state = " + this.state.plotData.data)
     }
+
 
     render() {
         return <>
@@ -65,9 +109,25 @@ export default class DataAnalysis extends Component {
                         </div>
                     </div>
 
+                    {
+                        // here begins the plotting
+                    }
+
                     <div className='col-sm-9'> here the plot
                         <div className='container'>
-                            <img src='../../Resources/under_construction.png' alt='testing img'></img>
+                            <img width="250" height="250" src='../../Resources/under_construction.png'
+                                alt='testing img'></img>
+                        </div>
+                        <div className='container'>
+                            <label>Data to be plotted: </label>
+                            <label id='data-to-plot'>-</label>
+                        </div>
+                        <div className='container'>
+                            <LineChart width={500} height={300} data={this.props.data}>
+                                <Line type="monotone" dataKey={[{ value: 3 }, { value: 5 }]} stroke="#8884d8" dot={false} />
+                                <XAxis id='xaxis' dataKey="X Axis" value="s" />
+                                <YAxis id='yaxis' />
+                            </LineChart>
                         </div>
                         <div >
                             <div className='container' style={{ marginTop: "5px", marginBottom: "5px", alignContent: "left" }}>
@@ -77,7 +137,7 @@ export default class DataAnalysis extends Component {
                                             <span className='input-group-text'>Graph's name: </span>
 
                                         </div>
-                                        <input type="text" aria-label="Plot Name" class="form-control" />
+                                        <input type="text" aria-label="Plot Name" placeholder='Graph name' class="form-control" />
                                     </div>
                                 </div>
                             </div>
