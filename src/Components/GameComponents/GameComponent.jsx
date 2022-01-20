@@ -14,7 +14,7 @@ export default class GameComponent extends Component {
                 <div className='container' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
                     <button onMouseOver={console.log("hi")} onMouseOut={console.log("out")} className='btn btn-outline-info'>Info</button>
-                    <img src={logo}></img>
+                    <img src={logo} alt='working on it'></img>
                 </div>
             </>
         )

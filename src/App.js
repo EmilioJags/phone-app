@@ -23,7 +23,7 @@ function App() {
               <Route exact path="/" component={PhoneListComponent}></Route>
               <Route
                 exact
-                path="/task-manager"
+                path="/task-manager/"
                 component={TaskManagerComponent}
               ></Route>
               <Route

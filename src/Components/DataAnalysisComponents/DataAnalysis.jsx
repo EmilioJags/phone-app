@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../../Resources/under_construction.png'
+
 import {
     LineChart,
     Line,
@@ -28,8 +29,21 @@ export default class DataAnalysis extends Component {
         this.getXValue = this.getXValue.bind(this);
         this.arimaMethod = this.arimaMethod.bind(this);
         this.armaMethod = this.armaMethod.bind(this);
+        this.randomSet = this.randomSet.bind(this);
+        this.xAxisChange = this.xAxisChange.bind(this);
+        this.yAxisChange = this.yAxisChange.bind(this);
     }
 
+    xAxisChange() {
+
+    }
+
+    yAxisChange() {
+
+    }
+    randomSet = (e) => {
+
+    }
     armaMethod() {
         alert("should perform ARMA method on data");
     }
@@ -77,13 +91,15 @@ export default class DataAnalysis extends Component {
         for (let i = 0; i < dt.length; i++) {
             //console.log(i);
             let new_d = {
-                value: dt[i]
+                value: dt[i],
+                year: i
             }
             dt_plot.push(new_d)
         }
 
         this.setState({ data: dt_plot })
         console.log("state = " + this.state.plotData.data)
+        console.log(this.state.data)
     }
 
 
@@ -96,23 +112,34 @@ export default class DataAnalysis extends Component {
 
                     <div className='col-sm-3' style={{ margin: "auto", textAlign: "left" }}>
                         <div className='container'>
-                            <label style={{ margin: "10px" }}>Enter the data you want to plot:</label><br />
+                            <label style={{ margin: "10px" }}>Enter the data you want to plot:</label>
+                            <br />
                             <input onChange={this.updatePlot} id='input-data' placeholder='ex. 1,2,3,4,5 ....'></input>
+                            <div className='container' style={{ padding: "0", marginTop: "5px" }}>
+                                <button onClick={this.randomSet}>
+                                    <img src='../../Resources/dice.png' />
+                                </button>
+                                <label style={{ marginLeft: "5px" }} onMouseEnter={() => console.log("flying")} onMouseLeave={() => console.log("remove")}>
+                                    Random set
+                                </label>
+                            </div>
                         </div>
                         <div className='container' style={{ marginTop: "10px", marginBottom: "5px" }}>
                             <label style={{ margin: "5px" }}>Select forecasting method</label>
                             <button onClick={this.arimaMethod} style={{ marginLeft: "5px", marginRight: "5px" }}
                                 disabled="true" id='arima-btn' className='btn btn-info'>ARIMA</button>
                             <button onClick={this.armaMethod} style={{ marginLeft: "5px", marginRight: "5px" }}
-                                disabled="true" id='arma-btn' className='btn btn-info'>ARMA</button>
-
-                            <a href="https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/#:~:text=An%20ARIMA%20model%20is%20a,and%20forecasting%20time%20series%20data.&text=time%20series%20forecasts.-,ARIMA%20is%20an%20acronym%20that%20stands%20for%20AutoRegressive%20Integrated%20Moving,adds%20the%20notion%20of%20integration."
+                                disabled="true" id='arma-btn' className='btn btn-info  '>ARMA</button>
+                            <br />
+                        </div>
+                        <div className='container'>
+                            <a href='https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/#:~:text=An%20ARIMA%20model%20is%20a,and%20forecasting%20time%20series%20data.&text=time%20series%20forecasts.-,ARIMA%20is%20an%20acronym%20that%20stands%20for%20AutoRegressive%20Integrated%20Moving,adds%20the%20notion%20of%20integration.'
                                 target="_blank">
                                 <button style={{ marginLeft: "15px", marginRight: "5px", marginTop: "5px" }}
                                     id='arima-info-btn' className='btn btn-outline-info rounded-circle'>info</button></a>
-                            <a href='https://www.statisticshowto.com/arma-model/#:~:text=An%20ARMA%20model%2C%20or%20Autoregressive,second%20for%20the%20moving%20average.&text=q%20is%20the%20order%20of%20the%20moving%20average%20polynomial.'
+                            <a href="https://www.statisticshowto.com/arma-model/#:~:text=An%20ARMA%20model%2C%20or%20Autoregressive,second%20for%20the%20moving%20average.&text=q%20is%20the%20order%20of%20the%20moving%20average%20polynomial."
                                 target="_blank">
-                                <button style={{ marginLeft: "25px", marginRight: "5px", marginTop: "5px" }}
+                                <button style={{ marginLeft: "15px", marginRight: "5px", marginTop: "5px" }}
                                     id='arma-info-btn' className='btn btn-outline-info rounded-circle'>info</button></a>
                         </div>
                     </div>
@@ -127,9 +154,9 @@ export default class DataAnalysis extends Component {
                             <label id='data-to-plot'>-</label>
                         </div>
                         <div className='container'>
-                            <LineChart width={500} height={300} data={this.props.data}>
-                                <Line type="monotone" dataKey={[{ value: 3 }, { value: 5 }]} stroke="#8884d8" dot={false} />
-                                <XAxis id='xaxis' dataKey="X Axis" value="s" />
+                            <LineChart width={500} height={300} data={this.state.data}>
+                                <Line type="monotone" dataKey="value" stroke="#8884d8" dot={false} />
+                                <XAxis id='xaxis' dataKey="year" />
                                 <YAxis id='yaxis' />
                             </LineChart>
                         </div>
@@ -151,8 +178,8 @@ export default class DataAnalysis extends Component {
                                         <div className='input-group-prepend '>
                                             <span className='input-group-text'>Axis' names: </span>
                                         </div>
-                                        <input placeholder='X Axis' type="text" class="form-control" />
-                                        <input placeholder='Y Axis' type="text" class="form-control" />
+                                        <input onChange={this.xAxisChange} placeholder='X Axis' type="text" class="form-control" />
+                                        <input onChange={this.yAxisChange} placeholder='Y Axis' type="text" class="form-control" />
                                     </div>
                                 </div>
                             </div>
