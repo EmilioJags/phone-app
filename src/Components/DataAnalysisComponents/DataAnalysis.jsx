@@ -42,7 +42,20 @@ export default class DataAnalysis extends Component {
 
     }
     randomSet = (e) => {
-
+        /*document.getElementById("input-data").innerHTML = '';
+        var arr = [];
+        var str = '';
+        var pos = 0;
+        while (arr.length < 10) {
+            arr.push(Math.floor(Math.random() * 100 + 1));
+            str += arr[pos] + ',';
+            pos++;
+        }
+        console.log(arr);
+        console.log(str);
+        str = str.substring(0, str.length - 1);
+        console.log(str);
+        document.getElementById("input-data").innerHTML = "str";*/
     }
     armaMethod() {
         alert("should perform ARMA method on data");
@@ -92,7 +105,7 @@ export default class DataAnalysis extends Component {
             //console.log(i);
             let new_d = {
                 value: dt[i],
-                year: i
+                year: i + 1
             }
             dt_plot.push(new_d)
         }
@@ -116,8 +129,8 @@ export default class DataAnalysis extends Component {
                             <br />
                             <input onChange={this.updatePlot} id='input-data' placeholder='ex. 1,2,3,4,5 ....'></input>
                             <div className='container' style={{ padding: "0", marginTop: "5px" }}>
-                                <button onClick={this.randomSet}>
-                                    <img src='../../Resources/dice.png' />
+                                <button onClick={this.randomSet} className='btn btn-info rounded-circle'>
+                                    <img width="15px" height="15px" src='../../Resources/dice.png' />
                                 </button>
                                 <label style={{ marginLeft: "5px" }} onMouseEnter={() => console.log("flying")} onMouseLeave={() => console.log("remove")}>
                                     Random set

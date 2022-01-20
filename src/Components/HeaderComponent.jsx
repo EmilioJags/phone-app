@@ -44,18 +44,7 @@ class HeaderComponent extends Component {
                         </div>
 
                         <div className='container'>
-                            <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
 
-                                <div className="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Dropdown
-                                    </button>
-                                    <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a className="dropdown-item" href="/">Dropdown a</a>
-                                        <a className="dropdown-item" href="#">Dropdown b</a>
-                                    </div>
-                                </div>
-                            </div>
                             <Link to="/game-app/" className='navbar-brand'>
                                 Game App [wip]
                             </Link>
