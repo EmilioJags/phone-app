@@ -26,8 +26,16 @@ export default class DataAnalysis extends Component {
         this.updatePlot = this.updatePlot.bind(this);
         this.validDigits = this.validDigits.bind(this);
         this.getXValue = this.getXValue.bind(this);
+        this.arimaMethod = this.arimaMethod.bind(this);
+        this.armaMethod = this.armaMethod.bind(this);
     }
 
+    armaMethod() {
+        alert("should perform ARMA method on data");
+    }
+    arimaMethod() {
+        alert("should perform ARMA method on data");
+    }
     getXValue = data => {
         return data.value;
     }
@@ -81,21 +89,21 @@ export default class DataAnalysis extends Component {
 
     render() {
         return <>
-            <div className='container'>this app will allow for data analysis on the spot</div>
+            <div className='container' style={{ textAlign: "center", marginBottom: "15px" }}>this app will allow for data analysis on the spot</div>
 
             <div className='container' style={{ wrap: "flex", alignItems: "center" }}>
                 <div className='row'>
 
-                    <div className='col-sm-3'>
+                    <div className='col-sm-3' style={{ margin: "auto", textAlign: "left" }}>
                         <div className='container'>
-                            <label>Enter the data you want to plot:</label><br />
+                            <label style={{ margin: "10px" }}>Enter the data you want to plot:</label><br />
                             <input onChange={this.updatePlot} id='input-data' placeholder='ex. 1,2,3,4,5 ....'></input>
                         </div>
-                        <div className='container' style={{ marginTop: "5px", marginBottom: "5px" }}>
-                            <label>Select forecasting method</label>
-                            <button style={{ marginLeft: "5px", marginRight: "5px" }}
+                        <div className='container' style={{ marginTop: "10px", marginBottom: "5px" }}>
+                            <label style={{ margin: "5px" }}>Select forecasting method</label>
+                            <button onClick={this.arimaMethod} style={{ marginLeft: "5px", marginRight: "5px" }}
                                 disabled="true" id='arima-btn' className='btn btn-info'>ARIMA</button>
-                            <button style={{ marginLeft: "5px", marginRight: "5px" }}
+                            <button onClick={this.armaMethod} style={{ marginLeft: "5px", marginRight: "5px" }}
                                 disabled="true" id='arma-btn' className='btn btn-info'>ARMA</button>
 
                             <a href="https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/#:~:text=An%20ARIMA%20model%20is%20a,and%20forecasting%20time%20series%20data.&text=time%20series%20forecasts.-,ARIMA%20is%20an%20acronym%20that%20stands%20for%20AutoRegressive%20Integrated%20Moving,adds%20the%20notion%20of%20integration."
@@ -113,11 +121,7 @@ export default class DataAnalysis extends Component {
                         // here begins the plotting
                     }
 
-                    <div className='col-sm-9'> here the plot
-                        <div className='container'>
-                            <img width="250" height="250" src='../../Resources/under_construction.png'
-                                alt='testing img'></img>
-                        </div>
+                    <div className='col-sm-9'>
                         <div className='container'>
                             <label>Data to be plotted: </label>
                             <label id='data-to-plot'>-</label>
