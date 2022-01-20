@@ -8,8 +8,9 @@ import AddPhone from "./Components/AddPhone";
 import EditPhoneComponent from "./Components/EditPhoneComponent";
 import TaskManagerComponent from "./Components/TaskManagerComponent";
 import WeatherComponent from "./Components/WeatherComponent";
-import GameComponent from "./Components/GameComponent";
+import GameComponent from "./Components/GameComponents/GameComponent";
 import CountDownApp from "./Components/CountdownComponents/CountDownApp";
+import DataAnalysis from "./Components/DataAnalysisComponents/DataAnalysis";
 
 function App() {
   return (
@@ -32,6 +33,12 @@ function App() {
               ></Route>
               <Route exact path="/game-app" component={GameComponent}></Route>
               <Route exact path="/agregar" component={AddPhone}></Route>
+
+              <Route
+                exact
+                path="/data-analysis"
+                component={DataAnalysis}
+              ></Route>
               <Route
                 exact
                 path="/edit-phone/:id"

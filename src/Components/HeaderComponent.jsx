@@ -48,6 +48,12 @@ class HeaderComponent extends Component {
                                 Game App [wip]
                             </Link>
                         </div>
+
+                        <div className='container'>
+                            <Link to="/data-analysis" className='navbar-brand'>
+                                Data Analysis App [wip]
+                            </Link>
+                        </div>
                         <div className='container'>
                             <Link to="/countdown-app" className='navbar-brand'>
                                 Countdown App
