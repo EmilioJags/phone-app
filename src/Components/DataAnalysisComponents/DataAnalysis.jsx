@@ -9,7 +9,8 @@ import {
     Label,
     CartesianGrid,
     Tooltip,
-    Legend
+    Legend,
+    ResponsiveContainer
 } from "recharts";
 
 
@@ -34,8 +35,17 @@ export default class DataAnalysis extends Component {
         this.xAxisChange = this.xAxisChange.bind(this);
         this.yAxisChange = this.yAxisChange.bind(this);
         this.clearData = this.clearData.bind(this);
+        this.graphNameChange = this.graphNameChange.bind(this);
     }
 
+    graphNameChange = (e) => {
+        if (e.target.value === '') {
+            document.getElementById('graph-name').innerHTML = 'Graph Name';
+        }
+        else {
+            document.getElementById('graph-name').innerHTML = e.target.value;
+        }
+    }
     clearData = (e) => {
         document.getElementById('input-data').value = '';
         document.getElementById('data-to-plot').innerHTML = '';
@@ -47,14 +57,14 @@ export default class DataAnalysis extends Component {
     xAxisChange = (e) => {
         if (e.target.value == '') {
             console.log('empty')
-            var xVal = document.getElementById('label-x-axis')
+            var xVal = document.getElementById('xaxis')
             console.log(xVal + " === ")
         }
         else {
-            console.log('fill it')
-            var xVal = document.getElementById('label-x-axis').innerHTML.replace('X-Axis', e.target.value)
-            document.getElementById('label-x-axis').innerHTML.replace('X-Axis', e.target.value)
-            console.log(xVal + " === ")
+            //console.log('fill it')
+            var xVal = document.getElementById('xaxis')
+            console.log(document.getElementById('xaxis'))
+
         }
     }
 
@@ -95,6 +105,9 @@ export default class DataAnalysis extends Component {
             }
             dt_plot.push(new_d)
         }
+
+        document.getElementById('arima-btn').disabled = false;
+        document.getElementById('arma-btn').disabled = false;
         this.setState({ data: dt_plot })
     }
     armaMethod() {
@@ -153,10 +166,29 @@ export default class DataAnalysis extends Component {
         this.setState({ data: dt_plot })
     }
 
-
+    componentDidMount() {
+        // for testing of plot
+        /*
+        document.getElementById('input-data').value = '1,2,3,4,5,6,5,4,3,2,1'
+        var dt = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+        var dt_plot = []
+        for (let i = 0; i < dt.length; i++) {
+            //console.log(i);
+            let new_d = {
+                value: dt[i],
+                vals: i + 1
+            }
+            dt_plot.push(new_d)
+        }
+        this.setState({ data: dt_plot })
+        */
+    }
     render() {
         return <>
-            <div className='container' style={{ textAlign: "center", marginBottom: "15px" }}>this app will allow for data analysis on the spot</div>
+            <div className='container' style={{ textAlign: "center", marginBottom: "15px" }}>
+                this app will allow for data analysis on the spot..
+                plans to add standard deviation and forecast into the plot
+            </div>
 
             <div className='container' style={{ wrap: "flex", alignItems: "center" }}>
                 <div className='row'>
@@ -212,36 +244,55 @@ export default class DataAnalysis extends Component {
                             <div style={{ wordWrap: "initial", flex: 1, flexWrap: "wrap" }} className='row'>
                                 <label>Data to be plotted: </label>
                                 <view style={{ flex: 1, flexDirection: "row" }} >
-                                    <label style={{ wordWrap: "initial", flex: 1, flexWrap: "wrap" }} id='data-to-plot'>-</label>
+                                    <label style={{ wordWrap: "initial", flex: 1, flexWrap: "wrap" }} id='data-to-plot'>[-]</label>
                                 </view>
                             </div>
                         </div>
-                        <div className='container'>
-                            <LineChart title="ok" width={500} height={300} data={this.state.data}>
-                                <Line type="monotone" dataKey="value" stroke="#8884d8" dot={false} />
-                                <XAxis id='xaxis' dataKey="year">
-                                    <Label value="X-Axis" id='label-x-axis' style={{}} >
-                                    </Label>
-                                </XAxis>
-                                <YAxis id='yaxis'  >
-                                    <Label angle={270} offset={0} style={{ textAnchor: "middle", margin: "5px" }} value="Y-Axis" id='label-x-axis'>
-                                    </Label>
-                                </YAxis>
-                            </LineChart>
+                        <div className='container' style={{ marginTop: "10px" }}>
+                            <div className='container' style={{ textAlign: "center", alignItems: "center", alignContent: "center" }}><text x={700} y={20} fill="black"
+                                textAnchor="right" dominantBaseline="right">
+                                <tspan id='graph-name' fontSize="14">Graph Name</tspan>
+                            </text>
+                            </div>
+                            <ResponsiveContainer width="99%" height={300}>
+
+                                <LineChart title="ok" width={500} height={300} data={this.state.data}>
+
+                                    <Line type="monotone" dataKey="value" stroke="#8884d8" dot={true} />
+                                    <XAxis type="number"
+                                        style={{ padding: "5px", margin: "10px" }}
+                                        padding={{ bottom: 5 }}
+                                        domain={[0, 'dataMax + 1']} id='xaxis' dataKey="vals"
+                                        label={{ value: "X-Axis", offset: -4, position: "insideBottom" }}
+                                    >
+                                    </XAxis>
+                                    <YAxis id='yaxis'
+                                        label={{ value: "Y-Axis", angle: -90, position: "insideLeft" }}  >
+                                    </YAxis>
+                                </LineChart>
+                            </ResponsiveContainer>
                         </div>
                         <div >
-                            <div className='container' style={{ marginTop: "5px", marginBottom: "5px", alignContent: "left" }}>
+                            <div className='container' style={{ marginTop: "10px", marginBottom: "15px", alignContent: "left" }}>
                                 <div className='col-sm-6'>
                                     <div className='input-group '>
                                         <div className='input-group-prepend '>
                                             <span className='input-group-text'>Graph's name: </span>
 
                                         </div>
-                                        <input type="text" aria-label="Plot Name" placeholder='Graph name' class="form-control" />
+                                        <input onChange={this.graphNameChange} type="text" aria-label="Plot Name" placeholder='Graph name' class="form-control" />
                                     </div>
                                 </div>
                             </div>
-                            <div className='container' >
+
+                        </div>
+                    </div>
+                </div>
+            </div >
+        </>;
+    }
+    /*
+    <div className='container' >
                                 <div className='col-sm-6' style={{ marginTop: "5px", marginBottom: "5px", alignContent: "left" }}>
                                     <div className='input-group '>
                                         <div className='input-group-prepend '>
@@ -252,10 +303,5 @@ export default class DataAnalysis extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div >
-        </>;
-    }
+                            */
 }
