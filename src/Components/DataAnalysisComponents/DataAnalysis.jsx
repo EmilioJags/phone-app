@@ -101,7 +101,7 @@ export default class DataAnalysis extends Component {
             //console.log(i);
             let new_d = {
                 value: str[i],
-                year: i + 1
+                vals: i + 1
             }
             dt_plot.push(new_d)
         }
@@ -158,7 +158,7 @@ export default class DataAnalysis extends Component {
             //console.log(i);
             let new_d = {
                 value: dt[i],
-                year: i + 1
+                vals: i + 1
             }
             dt_plot.push(new_d)
         }
@@ -168,7 +168,6 @@ export default class DataAnalysis extends Component {
 
     componentDidMount() {
         // for testing of plot
-        /*
         document.getElementById('input-data').value = '1,2,3,4,5,6,5,4,3,2,1'
         var dt = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
         var dt_plot = []
@@ -181,7 +180,6 @@ export default class DataAnalysis extends Component {
             dt_plot.push(new_d)
         }
         this.setState({ data: dt_plot })
-        */
     }
     render() {
         return <>
@@ -273,7 +271,7 @@ export default class DataAnalysis extends Component {
                             </ResponsiveContainer>
                         </div>
                         <div >
-                            <div className='container' style={{ marginTop: "10px", marginBottom: "15px", alignContent: "left" }}>
+                            <div className='container' style={{ marginTop: "10px", marginBottom: "5px", alignContent: "left" }}>
                                 <div className='col-sm-6'>
                                     <div className='input-group '>
                                         <div className='input-group-prepend '>
