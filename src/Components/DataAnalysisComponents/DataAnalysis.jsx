@@ -6,6 +6,7 @@ import {
     Line,
     XAxis,
     YAxis,
+    Label,
     CartesianGrid,
     Tooltip,
     Legend
@@ -32,30 +33,69 @@ export default class DataAnalysis extends Component {
         this.randomSet = this.randomSet.bind(this);
         this.xAxisChange = this.xAxisChange.bind(this);
         this.yAxisChange = this.yAxisChange.bind(this);
+        this.clearData = this.clearData.bind(this);
     }
 
-    xAxisChange() {
-
+    clearData = (e) => {
+        document.getElementById('input-data').value = '';
+        document.getElementById('data-to-plot').innerHTML = '';
+        document.getElementById('arima-btn').disabled = true;
+        document.getElementById('arma-btn').disabled = true;
+        this.setState({ data: [] })
     }
 
-    yAxisChange() {
+    xAxisChange = (e) => {
+        if (e.target.value == '') {
+            console.log('empty')
+            var xVal = document.getElementById('label-x-axis')
+            console.log(xVal + " === ")
+        }
+        else {
+            console.log('fill it')
+            var xVal = document.getElementById('label-x-axis').innerHTML.replace('X-Axis', e.target.value)
+            document.getElementById('label-x-axis').innerHTML.replace('X-Axis', e.target.value)
+            console.log(xVal + " === ")
+        }
+    }
 
+    yAxisChange = (e) => {
+        if (e.target.value == '') {
+            console.log('empty')
+        }
+        else {
+            console.log('fill it')
+            var yVal = document.getElementById('yaxis').value
+            console.log(yVal)
+        }
     }
     randomSet = (e) => {
-        /*document.getElementById("input-data").innerHTML = '';
+        document.getElementById("input-data").innerHTML = '';
         var arr = [];
         var str = '';
         var pos = 0;
-        while (arr.length < 10) {
+        while (arr.length < 15) {
             arr.push(Math.floor(Math.random() * 100 + 1));
-            str += arr[pos] + ',';
+            str += arr[pos] + ', ';
             pos++;
         }
-        console.log(arr);
-        console.log(str);
-        str = str.substring(0, str.length - 1);
-        console.log(str);
-        document.getElementById("input-data").innerHTML = "str";*/
+        //console.log(arr);
+        //console.log(str);
+        str = str.substring(0, str.length - 2);
+        //console.log(str);
+        document.getElementById('input-data').value = str
+        document.getElementById("data-to-plot").innerHTML = "[" + str + "]";
+        str = str.split(',').map(Number);
+        let dt_plot = []
+
+        for (let i = 0; i < str.length; i++) {
+            //console.log(i);
+            let new_d = {
+                value: str[i],
+                year: i + 1
+            }
+            dt_plot.push(new_d)
+        }
+        this.setState({ data: dt_plot })
     }
     armaMethod() {
         alert("should perform ARMA method on data");
@@ -70,19 +110,23 @@ export default class DataAnalysis extends Component {
     validDigits(data) {
         return data.replace(/[^\d,.]+/g, '');
     }
+    updatePlot() {
 
+    }
     updatePlot = (e) => {
-        document.getElementById('data-to-plot').innerHTML = e.target.value.replace(/[^\d,.]+/g, '');
+        console.log(str);
         var dt = this.validDigits(e.target.value).split(',').map(Number);
+        var str = ''
+        for (let i = 0; i < dt.length; i++) {
+            str += dt[i] + ', '
+        }
+        document.getElementById('data-to-plot').innerHTML = "[" + str.substring(0, str.length - 2) + "]";
         dt = Array.from(dt, item => item === '' ? 0 : item);
-        //console.log(dt);
-        let dt2 = dt.map(item => {
-            return item
-        })
+        //console.log(dt); 
 
-        //console.log(dt2);
-        const data = []
+
         var reg = /^[a-z]+$/i;
+
         if (reg.test(e.target.value)) {
             document.getElementById('arima-btn').disabled = true;
             document.getElementById('arma-btn').disabled = true;
@@ -94,10 +138,6 @@ export default class DataAnalysis extends Component {
             document.getElementById('arima-btn').disabled = true;
             document.getElementById('arma-btn').disabled = true;
         }
-        if (e.target.value == '')
-            document.getElementById('data-to-plot').innerHTML = '-'
-        else
-            document.getElementById('data-to-plot').innerHTML = "[" + dt + "]";
 
         let dt_plot = []
 
@@ -111,8 +151,6 @@ export default class DataAnalysis extends Component {
         }
 
         this.setState({ data: dt_plot })
-        console.log("state = " + this.state.plotData.data)
-        console.log(this.state.data)
     }
 
 
@@ -125,20 +163,28 @@ export default class DataAnalysis extends Component {
 
                     <div className='col-sm-3' style={{ margin: "auto", textAlign: "left" }}>
                         <div className='container'>
-                            <label style={{ margin: "10px" }}>Enter the data you want to plot:</label>
+                            <label >Enter the data you want to plot:</label>
                             <br />
-                            <input onChange={this.updatePlot} id='input-data' placeholder='ex. 1,2,3,4,5 ....'></input>
+
+                            <div className='input-group mb-3' style={{ flex: 1, marginTop: "3px" }}>
+                                <div className='input-group-prepend' >
+                                    <span><input className='input-group' onChange={this.updatePlot} id='input-data' placeholder='ex. 1,2,3,4,5 ....' />
+                                    </span>
+                                </div>
+                                <button style={{ marginLeft: "3px" }} className='bi bi-trash' onClick={this.clearData}>Clear</button>
+
+                            </div>
                             <div className='container' style={{ padding: "0", marginTop: "5px" }}>
-                                <button onClick={this.randomSet} className='btn btn-info rounded-circle'>
-                                    <img width="15px" height="15px" src='../../Resources/dice.png' />
+                                <button onClick={this.randomSet} className='btn btn-outline-dark rounded-square'>
+                                    Random data set
                                 </button>
                                 <label style={{ marginLeft: "5px" }} onMouseEnter={() => console.log("flying")} onMouseLeave={() => console.log("remove")}>
-                                    Random set
+
                                 </label>
                             </div>
                         </div>
                         <div className='container' style={{ marginTop: "10px", marginBottom: "5px" }}>
-                            <label style={{ margin: "5px" }}>Select forecasting method</label>
+                            <label style={{ margin: "5px" }}>Select forecasting method (not working yet)</label>
                             <button onClick={this.arimaMethod} style={{ marginLeft: "5px", marginRight: "5px" }}
                                 disabled="true" id='arima-btn' className='btn btn-info'>ARIMA</button>
                             <button onClick={this.armaMethod} style={{ marginLeft: "5px", marginRight: "5px" }}
@@ -162,15 +208,25 @@ export default class DataAnalysis extends Component {
                     }
 
                     <div className='col-sm-9'>
-                        <div className='container'>
-                            <label>Data to be plotted: </label>
-                            <label id='data-to-plot'>-</label>
+                        <div style={{ wordWrap: "initial", flex: 1, flexWrap: "wrap" }} className='container'>
+                            <div style={{ wordWrap: "initial", flex: 1, flexWrap: "wrap" }} className='row'>
+                                <label>Data to be plotted: </label>
+                                <view style={{ flex: 1, flexDirection: "row" }} >
+                                    <label style={{ wordWrap: "initial", flex: 1, flexWrap: "wrap" }} id='data-to-plot'>-</label>
+                                </view>
+                            </div>
                         </div>
                         <div className='container'>
-                            <LineChart width={500} height={300} data={this.state.data}>
+                            <LineChart title="ok" width={500} height={300} data={this.state.data}>
                                 <Line type="monotone" dataKey="value" stroke="#8884d8" dot={false} />
-                                <XAxis id='xaxis' dataKey="year" />
-                                <YAxis id='yaxis' />
+                                <XAxis id='xaxis' dataKey="year">
+                                    <Label value="X-Axis" id='label-x-axis' style={{}} >
+                                    </Label>
+                                </XAxis>
+                                <YAxis id='yaxis'  >
+                                    <Label angle={270} offset={0} style={{ textAnchor: "middle", margin: "5px" }} value="Y-Axis" id='label-x-axis'>
+                                    </Label>
+                                </YAxis>
                             </LineChart>
                         </div>
                         <div >
