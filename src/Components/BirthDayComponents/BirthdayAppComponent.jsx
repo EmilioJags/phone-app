@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BirthdayService from '../../Services/BirthdayService';
+import CalendarComponent from './CalendarComponent';
 
 class BirthdayAppComponent extends Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class BirthdayAppComponent extends Component {
         this.state = { births: [] }
 
         this.filterResults = this.filterResults.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     componentDidMount() {
@@ -28,19 +30,47 @@ class BirthdayAppComponent extends Component {
             })
         }
     }
+    editContact(id) {
+        console.log("loading .... " + id)
+        this.props.history.push(`/edit-birthday/${id}`)
+    }
 
+    delete(id) {
+        BirthdayService.deleteBirth(id).then(res => {
+            this.setState({ births: this.state.births.filter(amigo => amigo.id !== id) })
+        });
+
+    }
+    addBirthday = (e) => {
+        this.props.history.push('/add-birthday');
+    }
     render() {
         return (
             <>
                 <div>
                     <div className="container" style={{ padding: "10px", marginBottom: "20px" }} >
-                        <input onChange={this.filterResults} style={{ padding: "10px", marginBottom: "20px" }} type="text" className="form-control"
+                        <input onChange={this.filterResults}
+                            style={{
+                                padding: "10px", marginBottom: "20px"
+                            }}
+                            type="text"
+                            className="form-control"
                             placeholder="Introduce un termino de busqueda" aria-label="Recipient's username"
                             aria-describedby="button-addon2" />
-                        <button onClick={this.addBirthday} style={{ padding: "10px", marginBottom: "20px" }} className="btn btn-primary"
-                            aria-describedby="button-addon2">Add new birthday</button>
+                        <button onClick={this.addBirthday}
+                            style={{
+                                padding: "10px",
+                                marginBottom: "20px"
+                            }} className="btn btn-primary"
+                            aria-describedby="button-addon2">Add new birthday
+                        </button>
 
                     </div>
+
+                    <div className='container'>
+                        big calendar here
+                    </div>
+
 
                     <div className="row">
                         <table className="table table-striped table-bordered">

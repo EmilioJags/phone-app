@@ -3,29 +3,30 @@ import axios from "axios";
 //let TEL_URL = URL + "listatelefono/";
 let B_URL = "http://localhost:8080/";
 let url = "birthdays/";
+let full_url = B_URL + url;
 class PhoneService {
   getBirths() {
-    return axios.get(B_URL + url);
+    return axios.get(full_url);
   }
 
   addBirth(birthday) {
-    return axios.post(B_URL + "add-birthday", birthday);
+    return axios.post(full_url + "add-birthday", birthday);
   }
 
   findById(id) {
-    let newSearch = B_URL + "find-birth/" + id;
+    let newSearch = full_url + "birthday/" + id;
     return axios.get(newSearch);
   }
 
   findByFilter(str) {
-    let newStr = B_URL + "birthdays/find-births/filter?filter=" + str;
+    let newStr = full_url + "find-births/filter?filter=" + str;
     return axios.get(newStr);
   }
   deleteBirth(id) {
-    return axios.delete(B_URL + "remove-birth/" + id);
+    return axios.delete(full_url + "remove-birth/" + id);
   }
   updateBirth(id, contact) {
-    return axios.put(B_URL + "edit-birth/" + id, contact);
+    return axios.put(full_url + "edit-birth/" + id, contact);
   }
 }
 
