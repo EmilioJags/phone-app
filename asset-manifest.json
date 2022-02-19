@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/phone-app/static/css/main.eea6265f.css",
-    "main.js": "/phone-app/static/js/main.03928f98.js",
+    "main.css": "/phone-app/static/css/main.cfd5dd0c.css",
+    "main.js": "/phone-app/static/js/main.16decc76.js",
     "static/js/787.bcf69f66.chunk.js": "/phone-app/static/js/787.bcf69f66.chunk.js",
     "static/media/snow-dog.jpg": "/phone-app/static/media/snow-dog.ed21a2a85f57057917d3.jpg",
     "index.html": "/phone-app/index.html",
-    "main.eea6265f.css.map": "/phone-app/static/css/main.eea6265f.css.map",
-    "main.03928f98.js.map": "/phone-app/static/js/main.03928f98.js.map",
+    "main.cfd5dd0c.css.map": "/phone-app/static/css/main.cfd5dd0c.css.map",
+    "main.16decc76.js.map": "/phone-app/static/js/main.16decc76.js.map",
     "787.bcf69f66.chunk.js.map": "/phone-app/static/js/787.bcf69f66.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eea6265f.css",
-    "static/js/main.03928f98.js"
+    "static/css/main.cfd5dd0c.css",
+    "static/js/main.16decc76.js"
   ]
 }
