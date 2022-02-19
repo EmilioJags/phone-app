@@ -20,6 +20,7 @@ class HeaderComponent extends Component {
     render() {
         return (
             <div style={{
+                flex: "1",
                 scrollMarginTop: "10px", overflow: "hidden",
                 position: "fixed", left: "0", display: "inline-block",
                 width: "100%", top: "0"
@@ -32,23 +33,12 @@ class HeaderComponent extends Component {
                                 Phone Directory App</Link>
                         </div>
                         <div className='container'>
-                            <Link to="/weather-app/" className='navbar-brand'>
-                                Weather App [wip]
+                            <Link to="/birthday-app/" className='navbar-brand'>
+                                Birthday Calendar App [wip]
                             </Link>
                         </div>
 
-                        <div className='container'>
-                            <Link to="/task-manager/" className='navbar-brand'>
-                                Task Manager App [wip]
-                            </Link>
-                        </div>
 
-                        <div className='container'>
-
-                            <Link to="/game-app/" className='navbar-brand'>
-                                Game App [wip]
-                            </Link>
-                        </div>
 
                         <div className='container'>
                             <Link to="/data-analysis/" className='navbar-brand'>

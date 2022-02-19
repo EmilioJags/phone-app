@@ -11,6 +11,7 @@ import WeatherComponent from "./Components/WeatherComponent";
 import GameComponent from "./Components/GameComponents/GameComponent";
 import CountDownApp from "./Components/CountdownComponents/CountDownApp";
 import DataAnalysis from "./Components/DataAnalysisComponents/DataAnalysis";
+import BirthdayAppComponent from "./Components/BirthDayComponents/BirthdayAppComponent";
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
                 exact
                 path="/weather-app"
                 component={WeatherComponent}
+              ></Route>
+              <Route
+                exact
+                path="/birthday-app"
+                component={BirthdayAppComponent}
               ></Route>
               <Route exact path="/game-app" component={GameComponent}></Route>
               <Route exact path="/agregar" component={AddPhone}></Route>

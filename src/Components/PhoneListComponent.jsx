@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PhoneService from '../Services/PhoneService'
+import { SafeAreaView } from 'react-native';
 
 export default class PhoneListComponent extends Component {
 
@@ -11,9 +12,11 @@ export default class PhoneListComponent extends Component {
         this.editContact = this.editContact.bind(this);
         this.addContact = this.addContact.bind(this);
     }
+
     editContact(id) {
         this.props.history.push(`/edit-phone/${id}`)
     }
+
     delete(id) {
         PhoneService.deleteContact(id).then(res => {
             this.setState({ phones: this.state.phones.filter(amigo => amigo.id !== id) })
@@ -22,10 +25,10 @@ export default class PhoneListComponent extends Component {
     }
 
     componentDidMount() {
-        PhoneService.getPhones().then((res) => {
-            this.setState({ phones: res.data })
-
-        })
+        PhoneService.getPhones().then(
+            (res) => {
+                this.setState({ phones: res.data })
+            })
     }
 
     filterResults = (e) => {
@@ -46,17 +49,17 @@ export default class PhoneListComponent extends Component {
     }
     render() {
         return (
-            <div style={{ marginTop: "25px", alignContent: "left" }}>
+            <div style={{
+                marginTop: "top"
+            }}>
                 <h2 className="text-center">Directorio Telefonico ({this.state.phones.length} contactos)</h2>
-                <div className="input-group mb-3" >
-                    <input onChange={this.filterResults} type="text" className="form-control"
+
+                <div className="container" style={{ padding: "10px", marginBottom: "20px" }}   >
+                    <input onChange={this.filterResults} style={{ padding: "10px", marginBottom: "20px" }} type="text" className="form-control"
                         placeholder="Introduce un termino de busqueda" aria-label="Recipient's username"
                         aria-describedby="button-addon2" />
 
-                </div>
-                <div className="container" style={{ margin: "20px" }} >
-                    <button onClick={this.addContact} className="btn btn-primary"
-                        placeholder="Introduce un termino de busqueda" aria-label="Recipient's username"
+                    <button onClick={this.addContact} style={{ padding: "10px", marginBottom: "20px" }} className="btn btn-primary"
                         aria-describedby="button-addon2">Add new contact</button>
 
                 </div>
