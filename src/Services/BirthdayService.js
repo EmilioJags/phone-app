@@ -1,10 +1,11 @@
 import axios from "axios";
 //let URL = "https://ricardo-mycvapp.herokuapp.com/";
 //let TEL_URL = URL + "listatelefono/";
-let B_URL = "http://localhost:8080/";
+//let B_URL = "http://localhost:8080/";
+let B_URL = "https://ricardo-mycvapp.herokuapp.com/";
 let url = "birthdays/";
 let full_url = B_URL + url;
-class PhoneService {
+class BirthdayService {
   getBirths() {
     return axios.get(full_url);
   }
@@ -30,4 +31,4 @@ class PhoneService {
   }
 }
 
-export default new PhoneService();
+export default new BirthdayService();
