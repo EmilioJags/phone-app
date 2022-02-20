@@ -20,7 +20,7 @@ function App() {
     <>
       <Router basename={process.env.PUBLIC_URL}>
         <div className="container">
-          <HeaderComponent />
+          <HeaderComponent style={{ marginBottom: "15px" }} />
           <div style={{ marginTop: "55px" }} className="container">
             <Switch>
               <Route exact path="/" component={PhoneListComponent}></Route>

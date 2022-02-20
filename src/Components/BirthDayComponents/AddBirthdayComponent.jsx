@@ -28,7 +28,7 @@ class AddBirthdayComponent extends Component {
     }
     addNewContact = (event) => {
         event.preventDefault();
-        if (this.state.name === '' || this.state.dob === '') {
+        if (this.state.name == '' || this.state.dob == '') {
             alert("Nombre y cumpleaños deben tener un valor")
             return
         }

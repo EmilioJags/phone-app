@@ -48,7 +48,7 @@ class BirthdayAppComponent extends Component {
     render() {
         return (
             <>
-                <div>
+                <div className='container' style={{ marginTop: "45px", paddingTop: "45px" }}>
                     <div className="container" style={{ padding: "10px", marginBottom: "20px" }} >
                         <input onChange={this.filterResults}
                             style={{
