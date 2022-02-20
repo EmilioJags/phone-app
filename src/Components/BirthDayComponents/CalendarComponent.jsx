@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
-import Datepicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import Calendar from 'react-big-calendar'
 
 
 function CalendarComponent() {
@@ -10,28 +10,10 @@ function CalendarComponent() {
 
 
 
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
+
     return (
         <div>
-            <Datepicker
 
-                selected={startDate}
-                dateFormat='dd-MMM-yyyy'
-                onChange={(date) => setStartDate(date)}
-            />
         </div >
     )
 }

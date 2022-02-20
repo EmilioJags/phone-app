@@ -32,6 +32,7 @@ class BirthdayAppComponent extends Component {
     }
     editContact(id) {
         console.log("loading .... " + id)
+        console.log(this.state)
         this.props.history.push(`/edit-birthday/${id}`)
     }
 
@@ -68,7 +69,8 @@ class BirthdayAppComponent extends Component {
                     </div>
 
                     <div className='container'>
-                        big calendar here
+                        big calendar here [wip]
+                        <CalendarComponent></CalendarComponent>
                     </div>
 
 

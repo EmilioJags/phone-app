@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BirthdayService from '../../Services/BirthdayService';
-import Datepicker from 'react-datepicker'
+import Datepicker from 'react-datepicker';
+import Calendar from 'react-calendar';
 
 class EditBirthdayComponent extends Component {
     constructor(props) {
@@ -17,10 +18,15 @@ class EditBirthdayComponent extends Component {
         this.updateContact = this.updateContact.bind(this);
         this.cancel = this.cancel.bind(this);
         this.updateDate = this.updateDate.bind(this);
+        this.setDate = this.setDate.bind(this);
+        this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', "Jul",
+            "Aug", "Sep", "Oct", "Nov", "Dec"];
     }
+
     updateDate() {
         this.setDate(this.state.dob)
     }
+
     updateContact = (e) => {
         e.preventDefault();
         if (this.state.name === '' || this.state.dob === '') {
@@ -32,7 +38,7 @@ class EditBirthdayComponent extends Component {
             dob: this.state.dob,
             phone: this.state.phone
         }
-        BirthdayService.updateContact(this.state.id, newBirth).then(res => {
+        BirthdayService.updateBirth(this.state.id, newBirth).then(res => {
             this.props.history.push("/birthday-app")
         })
     }
@@ -41,32 +47,35 @@ class EditBirthdayComponent extends Component {
         BirthdayService.findById(this.state.id).then((res) => {
             let birth = res.data
             this.setState({ name: birth.name, dob: birth.dob, phone: birth.phone })
+
         })
-        document.getElementById('dob').value = new Date();
     }
+
     changeNameHandler = (e) => {
         this.setState({ name: e.target.value })
     }
+
     changePhoneHandler = (e) => {
         this.setState({ phone: e.target.value })
     }
+
     changeNoteHandler = (e) => {
         this.setState({ dob: e.target.value })
     }
+
     cancel = (e) => {
         e.preventDefault();
         this.props.history.push("/birthday-app");
     }
+
     setDate = e => {
-        this.setState({ date: e })
         var newD = (e.getDate() < 10 ? "0" + e.getDate() : e.getDate()) + "-" +
             this.months[e.getMonth()] + "-" +
             e.getFullYear();
-        console.log((e.getDate() < 10 ? "0" + e.getDate() : e.getDate()) + "-" +
-            this.months[e.getMonth()] + "-" +
-            e.getFullYear())
+        console.log("selected date > " + newD)
         this.setState({ dob: newD })
     }
+
     render() {
         return (
             <>
@@ -91,11 +100,10 @@ class EditBirthdayComponent extends Component {
                                         <div className="form-group">
                                             <label style={{ marginBottom: "5px" }}>Cumpleaños: </label>
 
-                                            <Datepicker id='dob' name='dob'
-                                                selected={this.props.match.params.dob}
+                                            <Calendar id='cal'
+                                                defaultActiveStartDate={this.dateVar}
                                                 dateFormat='dd-MMM-yyyy'
                                                 onChange={this.setDate}
-                                                showFullMonthYearPicker
                                             />
 
 
