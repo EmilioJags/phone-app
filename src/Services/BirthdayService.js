@@ -1,6 +1,5 @@
 import axios from "axios";
 //let URL = "https://ricardo-mycvapp.herokuapp.com/";
-//let TEL_URL = URL + "listatelefono/";
 //let B_URL = "http://localhost:8080/";
 let B_URL = "https://ricardo-mycvapp.herokuapp.com/";
 let url = "birthdays/";

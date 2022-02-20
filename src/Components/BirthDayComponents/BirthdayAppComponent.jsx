@@ -68,7 +68,7 @@ class BirthdayAppComponent extends Component {
 
                     </div>
 
-                    <div className='container'>
+                    <div className='container' style={{ margin: "15px" }}>
                         big calendar here [wip]
                         <CalendarComponent></CalendarComponent>
                     </div>

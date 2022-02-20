@@ -24,6 +24,7 @@ function App() {
           <div style={{ marginTop: "55px" }} className="container">
             <Switch>
               <Route exact path="/" component={PhoneListComponent}></Route>
+
               <Route
                 exact
                 path="/task-manager/"
